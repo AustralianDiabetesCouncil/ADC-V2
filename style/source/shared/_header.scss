@@ -1,0 +1,299 @@
+// ==============================================================
+//		global
+// ==============================================================
+
+#header {
+	position: relative;
+	min-height: 110px;
+}
+
+#taskbar, #main_navigation {
+	margin-left: 110px;
+}
+
+#taskbar {
+	position: relative;
+	background: $taskbar_bg;
+	margin-left: 110px;
+	padding: 15px 25px;
+
+	&:after {
+		content: '';
+		display: table;
+		width: 100%;
+		clear: both;
+	}
+}
+
+// ==============================================================
+//		logo
+// ==============================================================
+
+.logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 110px;
+	display: inline-block;
+	background-color: $logo_bg;
+	text-indent: -9999px; 
+	background-repeat: no-repeat;
+	z-index: 4000;
+
+	.svg & {
+		background-image: url(#{$img}/adc_logo.svg);
+		background-size: 60px auto;
+		background-position: center;
+	}
+
+	.no-svg & {
+		background-image: url(#{$img}/adc_logo.png);
+		background-position: center;
+	}
+}
+
+// ==============================================================
+//		taskbar
+// ==============================================================
+
+.freephone {
+	margin: 0 22px 0 0;
+	line-height: 33px;
+}
+
+.action_links {
+	position: relative; 
+	float: right;
+
+	> * {
+		float: left;
+	}
+
+	.btn-group {
+		margin-right: 12px;
+	}
+}
+
+// ==============================================================
+//		search
+// ==============================================================
+
+.search {
+	position: relative;
+	float: left;
+	width: 40%;
+	
+	form {
+		margin: 0;
+		position: relative;
+		overflow: hidden;
+	}
+}
+
+.search-wrap {
+
+}
+
+.screen-reader {
+	display: none;
+}
+
+#q {
+	-webkit-appearance: none;
+	@include border-radius(4px);
+	box-shadow: none;
+	border: 1px solid #b1b1b1;
+	padding: 6px 50px 6px 10px;
+	font-size: 13px;
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	@include transition(all 0.3s ease);
+	height: auto; // this is an overide
+	line-height: 1.3em;
+}
+
+#q:focus {
+	border: 1px solid #005e9f;
+	outline: none;
+}
+
+.search .search-wrap #search-form #search-button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: 0;
+	outline: 0;
+	color: white;
+	height: 30px;
+	width: 40px;
+	margin: 0;
+	padding: 0 10px;
+	@include border-radius(0); // this is an overide
+	@include border-top-right-radius(4px);
+	@include border-bottom-right-radius(4px);
+	text-indent: -9999px;
+}
+
+
+.search-icon {
+	@include background-image(url(#{$img}/search.png));
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: transparent;
+	width: 20px;
+	height: 29px;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	z-index: 30;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:hover + #search-button {
+		background: #3276b1!important;
+	}
+}
+
+.ie .search .search-wrap {
+	@media all and (max-width: 680px) {
+		display: none!important;
+		visibility: hidden!important;
+	}
+}
+
+// retina logo stuff
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+	.search-icon {
+		@include background-image(url(#{$img}/search.svg));
+		background-size: 15px;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: transparent;
+	}
+}
+
+// ==============================================================
+//		main navigation
+// ==============================================================
+
+.main_navigation_wrap {
+	background: $navigation_bg;
+}
+
+#main_navigation {
+	position: relative;
+	margin-left: 110px;
+
+	&:after {
+		content: '';
+		display: table;
+		width: 100%;
+		clear: both;
+	}
+
+	ul {
+		@include list_reset;
+	}
+
+	#menu-header-menu {
+		> li {
+			display: block;
+			float: left;
+
+			a {
+				display: block;
+				padding: 16px 23px;
+				color: $menu_items;
+				@include font-size(13);
+
+				&:hover {
+					text-decoration: none;
+					background: darken($navigation_bg, 3%);
+				}
+			}
+
+			> ul {
+				position: absolute; 
+				top: 100%;
+				left: -110px;
+				right: 0;
+				background: $navigation_bg;
+				z-index: 3000;
+				display: none;
+
+				li {
+					display: block;
+					float: left;
+				}
+			}
+		}
+	}
+
+	#menu-header-menu .menu-item-has-children {
+
+		a {
+			position: relative;
+			padding: 16px 31px 16px 23px;
+
+			&:after {
+				content: '';
+				position: absolute;
+				display: inline-block;
+				width: 0;
+				height: 0;
+				right: 14px;
+				top: 50%;
+				margin-top: -2px;
+				margin-left: 2px;
+				vertical-align: middle;
+				border-top: 4px solid white;
+				border-right: 4px solid transparent;
+				border-left: 4px solid transparent;
+				border-bottom: 0 dotted;
+			}
+		}
+	}
+}
+
+// ==============================================================
+//		mobile navigation
+// ==============================================================
+
+.mobile_navigation_links {
+	margin-left: 110px;
+	display: none;
+
+	@include maxbreak(1100px) {
+		display: block;
+	}
+}
+
+.mobile_navigation_wrap {
+	position: absolute;
+	top: 0;
+	margin-left: -200px;
+	width: 200px;
+	bottom: 0;
+	background: red;
+	z-index: 6000;
+	@include transition(margin 0.3s ease);
+}
+
+#mobile_navigation {
+	
+}
+
+.mobile_nav {
+
+	.mobile_navigation_wrap {
+		margin-left: 0;
+	}
+
+	.page_wrap {
+		margin-left: 200px;
+	}
+}

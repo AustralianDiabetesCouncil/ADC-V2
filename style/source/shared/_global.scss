@@ -1,0 +1,7 @@
+html, body {
+	height: 100%;
+}
+
+.page_wrap {
+	@include transition(margin 0.3s ease);
+}
